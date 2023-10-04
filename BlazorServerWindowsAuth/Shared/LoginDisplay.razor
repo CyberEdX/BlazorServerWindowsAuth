@@ -1,0 +1,34 @@
+﻿@using BlazorServerWindowsAuth.Data
+@inject UserInfoService UserService
+
+<AuthorizeView>
+    <span class="logged-user">@loggedName</span>
+</AuthorizeView>
+
+@code {
+    [CascadingParameter]
+    private Task<AuthenticationState>? authenticationState { get; set; }
+
+    private string loggedName = "none";
+
+    private UserInfoAD? userInfoAD;
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (authenticationState is not null)
+        {
+            AuthenticationState authState = await authenticationState;
+            var user = authState?.User;
+            if (user?.Identity is not null && user.Identity.IsAuthenticated)
+            {
+                var tmp = user.Identity.Name;
+                if (tmp is not null && tmp.Contains("\\"))
+                {
+                    userInfoAD = await UserService.GetUserInfoAsync(tmp);
+                    loggedName = userInfoAD.DisplayName ?? "none";
+                }
+            }
+        }
+    }
+
+}

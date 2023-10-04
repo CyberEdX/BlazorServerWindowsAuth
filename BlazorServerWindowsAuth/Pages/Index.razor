@@ -1,0 +1,72 @@
+﻿@using System.Security.Claims
+@inject AuthenticationStateProvider AuthenticationStateProvider
+
+@page "/"
+
+<PageTitle>Index</PageTitle>
+
+<h1>Hello, world!</h1>
+
+Welcome to your new app.
+
+<SurveyPrompt Title="How is Blazor working for you?" />
+
+<br />
+<br />
+
+@if (claims.Count() > 0)
+{
+    <ul>
+        <li>Name: @claims.FirstOrDefault(c => c.Type == ClaimTypes.Name).Value.ToString()</li>
+        @foreach (var claim in claims.Where(c => c.Type == ClaimTypes.Role).OrderBy(c => c.Value).ToList())
+        {
+            <li>Role: @claim.Value</li>
+        }
+    </ul>
+}
+
+<br />
+<br />
+
+
+<AuthorizeView Policy="IsUser">
+    <Authorized>
+        <div>You are a user</div>
+    </Authorized>
+    <NotAuthorized>
+        <div>Content blocked - User</div>
+    </NotAuthorized>
+</AuthorizeView>
+
+<AuthorizeView Policy="IsAdmin">
+    <Authorized>
+        <div>You are a Admin</div>
+    </Authorized>
+    <NotAuthorized>
+        <div>Content blocked - Admin</div>
+    </NotAuthorized>
+</AuthorizeView>
+
+<AuthorizeView Policy="IsSupport">
+    <Authorized>
+        <div>You are a Support</div>
+    </Authorized>
+    <NotAuthorized>
+        <div>Content blocked - Support</div>
+    </NotAuthorized>
+</AuthorizeView>
+
+@code {
+    private IEnumerable<Claim> claims = Enumerable.Empty<Claim>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+        var user = authState.User;
+
+        if (user.Identity is not null && user.Identity.IsAuthenticated)
+        {
+            claims = user.Claims;
+        }
+    }
+}

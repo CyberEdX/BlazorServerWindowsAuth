@@ -1,0 +1,38 @@
+﻿@using BlazorServerWindowsAuth.Data
+@inject UserInfoService UserService
+
+<div class="footer-info fixed-bottom" style="margin-top:5px">
+    &nbsp; &nbsp;
+    <strong>User-Id:</strong> @loggedUserId &nbsp; &nbsp; &nbsp; &nbsp;
+    <strong>E-mail:</strong> @loggedEmail &nbsp; &nbsp; &nbsp; &nbsp;
+    (<SupportLabel />) &nbsp; &nbsp; &nbsp; &nbsp;
+    <strong>Server:</strong> @Environment.GetEnvironmentVariable("COMPUTERNAME")
+</div>
+
+@code {
+    [CascadingParameter]
+    private Task<AuthenticationState>? authenticationState { get; set; }
+
+    private string loggedUserId = "none";
+    private string loggedEmail = "";
+
+    private UserInfoAD? userInfoAD;
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (authenticationState is not null)
+        {
+            AuthenticationState authState = await authenticationState;
+            var user = authState?.User;
+            if (user?.Identity is not null && user.Identity.IsAuthenticated)
+            {
+                loggedUserId = user.Identity.Name ?? "none";
+                userInfoAD = await UserService.GetUserInfoAsync(loggedUserId);
+                if (userInfoAD is not null)
+                {
+                    loggedEmail = userInfoAD.EmailAddress ?? "";
+                }
+            }
+        }
+    }
+}
