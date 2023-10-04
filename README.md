@@ -24,9 +24,9 @@ public class UserInfoService
 public class UserInfoAD
 
 Under Shared folder (updated and new components): 
-- <LoginDisplay /> (updated)
-- <FooterLayout /> (new)
-- <SupportLabel /> (new)
+- LoginDisplay (updated)
+- FooterLayout (new)
+- SupportLabel (new)
 
 Links:
 - blazor-top-navbar:
