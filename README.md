@@ -3,17 +3,17 @@
 Blazor Server with Windows Authentication / Authorization
 
 - Updates on Program.cs:
-builder.Services.AddAuthorization(options =>
-{
-    // By default, all incoming requests will be authorized according to the default policy.
-    options.FallbackPolicy = options.DefaultPolicy;
-    options.AddPolicy("IsSupport", policy => policy.RequireRole("Support"));
-    options.AddPolicy("IsUser", policy => policy.RequireRole("User"));
-    options.AddPolicy("IsAdmin", policy => policy.RequireRole("Support", "Admin"));
-});
-...
-builder.Services.AddSingleton<UserInfoService>();
-builder.Services.AddTransient<IClaimsTransformation, AppClaimsTransformation>();
+' builder.Services.AddAuthorization(options =>
+' {
+'     // By default, all incoming requests will be authorized according to the default policy.
+'     options.FallbackPolicy = options.DefaultPolicy;
+'     options.AddPolicy("IsSupport", policy => policy.RequireRole("Support"));
+'     options.AddPolicy("IsUser", policy => policy.RequireRole("User"));
+'     options.AddPolicy("IsAdmin", policy => policy.RequireRole("Support", "Admin"));
+' });
+' ...
+' builder.Services.AddSingleton<UserInfoService>();
+' builder.Services.AddTransient<IClaimsTransformation, AppClaimsTransformation>();
 
 Under Data folder:
 - Class Services:
