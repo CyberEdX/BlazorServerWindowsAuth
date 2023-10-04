@@ -1,4 +1,5 @@
 # BlazorServerWindowsAuth
+![BlazorServer-Windows-Auth-example](https://github.com/CyberEdX/BlazorServerWindowsAuth/assets/84814386/282bb76d-370e-4f67-85d8-d4f7905e9dd1)
 
 ## Blazor Server with Windows Authentication / Authorization
 ![BlazorServerWinAuth](https://github.com/CyberEdX/BlazorServerWindowsAuth/assets/84814386/8a98ac20-1183-41ef-84a4-e11955c6e220)
