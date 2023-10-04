@@ -15,8 +15,8 @@ Blazor Server with Windows Authentication / Authorization
  ...
  builder.Services.AddSingleton<UserInfoService>();
  builder.Services.AddTransient<IClaimsTransformation, AppClaimsTransformation>();
-</code>
 
+</code>
 
 Under Data folder:
 - Class Services:
