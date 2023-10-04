@@ -1,6 +1,6 @@
 # BlazorServerWindowsAuth
 
-Blazor Server with Windows Authentication / Authorization
+## Blazor Server with Windows Authentication / Authorization
 
 - Updates on Program.cs:
 <code>
@@ -18,7 +18,7 @@ Blazor Server with Windows Authentication / Authorization
 
 </code>
 
-Under Data folder:
+### Under Data folder:
 - Class Services:
 public class AppClaimsTransformation : IClaimsTransformation
 public class UserInfoService
@@ -26,12 +26,12 @@ public class UserInfoService
 - Class Model:
 public class UserInfoAD
 
-Under Shared folder (updated and new components): 
+### Under Shared folder (updated and new components): 
 - LoginDisplay (updated)
 - FooterLayout (new)
 - SupportLabel (new)
 
-Links:
+### Links:
 - blazor-top-navbar:
   https://github.com/martinmogusu/blazor-top-navbar
 - Adding Authentication to your Blazor Server web app:
@@ -40,3 +40,4 @@ Links:
   https://chrissainty.com/securing-your-blazor-apps-configuring-policy-based-authorization-with-blazor/
 - Extend or add custom claims using IClaimsTransformation:
   https://learn.microsoft.com/en-us/aspnet/core/security/authentication/claims?view=aspnetcore-7.0#extend-or-add-custom-claims-using-iclaimstransformation
+
