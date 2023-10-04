@@ -10,11 +10,11 @@ namespace BlazorServerWindowsAuth.Data
             if (principal is not null) {
                 ClaimsIdentity claimsIdentity = new ClaimsIdentity();
                 AddRoleClaim(principal, claimsIdentity, "User");
-                if (principal.IsInRole("GG-6401-Computer-admins"))
+                if (principal.IsInRole("COMPANY-CODE-Computer-admins"))
                 {
                     AddRoleClaim(principal, claimsIdentity, "Support");
                 }
-                if (principal.Identity.Name.EndsWith("asala") || principal.Identity.Name.EndsWith("mfernan5"))
+                if (principal.Identity.Name.EndsWith("userid1") || principal.Identity.Name.EndsWith("userid2"))
                 {
                     AddRoleClaim(principal, claimsIdentity, "Admin");
                 }

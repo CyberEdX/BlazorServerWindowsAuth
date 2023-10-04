@@ -5,7 +5,7 @@ namespace BlazorServerWindowsAuth.Data
 {
     public class UserInfoService
     {
-        private readonly string _ADpath = "LDAP://ad.reydel";
+        private readonly string _ADpath = "LDAP://ad.companyid";
 
         [SupportedOSPlatform("windows")]
         public Task<UserInfoAD> GetUserInfoAsync(string userName)
